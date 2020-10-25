@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.telRan.tests.tests.BoardModificationTests" tests="1" skipped="1" failures="0" errors="0" timestamp="2020-10-25T19:35:57" hostname="FAMILYBOOK" time="0.0">
+  <properties/>
+  <testcase name="modifyBoardTest" classname="com.telRan.tests.tests.BoardModificationTests" time="0.0">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
