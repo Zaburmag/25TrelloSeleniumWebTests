@@ -15,25 +15,23 @@ dependencies {
     implementation 'ch.qos.logback:logback-classic:1.2.3'
 }
 
-task testRegression(type: Test) {
-    test {
-        useTestNG() {
-            suites 'src/test/resources/testng-regression-without-login.xml'
-        }
-
-        if (project.hasProperty('browser')) {
-            systemProperty 'browser', "${browser}"
-        }
+task testRegression(type:Test){
+    useTestNG{
+        suites 'src/test/resources/testng-regression-without-login.xml'
+    }
+    if(project.hasProperty('browser')){
+        systemProperty 'browser', "${browser}"
     }
 }
-task testBoards (type: Test) {
-    test {
-        useTestNG() {
-            suites 'src/test/resources/testng-boards.xml'
-        }
 
-        if (project.hasProperty('browser')) {
-            systemProperty 'browser', "${browser}"
-        }
+task testBoards(type:Test){
+    useTestNG{
+        suites 'src/test/resources/testng-boards.xml'
+    }
+    if(project.hasProperty('browser')){
+        systemProperty 'browser', "${browser}"
+    }
+    if(project.hasProperty('target')){
+        systemProperty 'target', "${target}"
     }
 }
