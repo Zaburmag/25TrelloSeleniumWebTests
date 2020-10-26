@@ -15,59 +15,58 @@ public class HelperBase {
      WebDriver wd;
 
     public HelperBase(WebDriver wd) {
-
         this.wd = wd;
     }
-    public void type(By locator, String text){
-        if(text == null) {
+
+    public void type(By locator, String text) {
+        if(text != null){
             click(locator);
-            wd.findElement(locator).click();
+            wd.findElement(locator).clear();
             wd.findElement(locator).sendKeys(text);
         }
     }
 
-    public void uploadFile(By locator, File file){//
-
+    public void uploadFile(By locator, File file) {
         wd.findElement(locator).sendKeys(file.getAbsolutePath());
     }
 
     public void click(By locator){
-       wd.findElement(locator).click();
+        wd.findElement(locator).click();
     }
 
-    public boolean isElementPresent(By locator) {
+    public boolean isElementPresent(By locator){
         return wd.findElements(locator).size()>0;
     }
 
     public void waitForElement(By locator, int timeOut){
         new WebDriverWait(wd, timeOut).until(ExpectedConditions.presenceOfElementLocated(locator));
-    }
 
+    }
     public void waitForElementAndClick(By locator, int timeOut){
-        new WebDriverWait(wd,timeOut).until(ExpectedConditions.presenceOfElementLocated(locator)).click();
+        new WebDriverWait(wd, timeOut).until(ExpectedConditions.presenceOfElementLocated(locator)).click();
 
     }
-    public void waitForElementAndType(By locator, int timeOut,String text){
-        if(text!=null) {
+
+    public void waitForElementAndType(By locator, int timeOut, String text){
+        if(text!=null){
             new WebDriverWait(wd, timeOut).until(ExpectedConditions.presenceOfElementLocated(locator)).click();
             wd.findElement(locator).clear();
             wd.findElement(locator).sendKeys(text);
         }
 
+
     }
-    public void takeScreenshot()  {
-        File tmp = ((TakesScreenshot)wd).getScreenshotAs(OutputType.FILE);
-        //screenshot-46677543.png
-        File screen = new File("screenshot-" +System.currentTimeMillis()+ ".png");
+
+    public void takeScreenshot() {
+        File tmp = ((TakesScreenshot) wd).getScreenshotAs(OutputType.FILE);
+        //screenshot-63565345.png
+        File screen = new File("screenshot-"+ System.currentTimeMillis() + ".png");
+
         try {
             Files.copy(tmp, screen);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-    }
-
-
-    public void switchToAttlassianAccWindow() {
     }
 }

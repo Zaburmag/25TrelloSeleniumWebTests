@@ -10,37 +10,38 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
 public class TestBase {
 
 
-    protected static ApplicationManager app = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
+    protected static ApplicationManager app =
+            new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
     Logger logger = LoggerFactory.getLogger(TestBase.class);
 
     @BeforeSuite
-    public void setUp()throws InterruptedException
-    {
+    public void setUp() throws InterruptedException,  IOException {
         app.init();
-        app.session().login("yuliazaburmag@gmail.com","naomi_1007");
+
     }
 
     @BeforeMethod
     public void logTestStart(Method m, Object[] p){
-        logger.info("start test" +" with parameters : "+  m.getName(), Arrays.asList(p));
+        logger.info("start test " + m.getName() + " with parameters: " + Arrays.asList(p));
     }
 
     @AfterMethod
     public void logTestStop(Method m){
-        logger.info("stop test " + m.getName());
+        logger.info("stop test" +  m.getName());
+
     }
 
 
-    @AfterSuite(enabled = true)
-    public void tearDown(){
+    @AfterSuite(enabled = false)
+    public void tearDown() {
         app.stop();
 
     }
-
 }

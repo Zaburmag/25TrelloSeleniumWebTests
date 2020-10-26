@@ -4,44 +4,57 @@ import com.telRan.tests.model.Board;
 import com.telRan.tests.model.Board.withBoardName;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class BoardCreationTests extends TestBase {
 
     @BeforeClass
     public void isOnBoardsPage(){
-
-        try{
+        try {
             Thread.sleep(10000);
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
         if(!app.board().isOnBoardsPage()){
             app.leftNav().returnToBoardsPage();
-        }
+        };
     }
 
+    @Test(dataProvider="validBoardsFromCSV", dataProviderClass = DataProvider.class)
+    public void boardCreationTestFromDataProviderCSV(Board board) {
 
-    @Test(dataProvider =  "validBoardsFromCSV",dataProviderClass = DataProvider.class)
-    public void boardCreationTestFromDataProviderCSV(Board board, Object boardVisibility, String boardName){
         int before = app.board().getBoardsCount();
         app.header().clickOnPlusButton();
         app.header().selectCreateBoard();
-
-
-        board = new Board().withBoardName
-                (boardName).withTeamVisibility((String) boardVisibility);
+//        Board board = new Board()
+//                .withBoardName(boardName)
+//                .withTeamVisibility(boardVisibility);
         app.board().fillBoardForm(board);
         app.board().confirmBoardCreation();
         app.header().returnOnHomePageFromBoard();
-
         int after = app.board().getBoardsCount();
-        System.out.println("was: " + before+ "now: " + after);
-        Assert.assertEquals(after,before+1);
-        //personal boards count before, after-proveryet kol-vo dosok
-
+        System.out.println("was: " + before + " now: " + after);
+        Assert.assertEquals(after, before+1);
     }
+
+    @Test(dataProvider="validBoards", dataProviderClass = DataProvider.class)
+    public void boardCreationTestFromDataProvider(String boardName, String boardVisibility) {
+
+        int before = app.board().getBoardsCount();
+        app.header().clickOnPlusButton();
+        app.header().selectCreateBoard();
+        Board board = new Board()
+                .withBoardName(boardName)
+                .withTeamVisibility(boardVisibility);
+        app.board().fillBoardForm(board);
+        app.board().confirmBoardCreation();
+        app.header().returnOnHomePageFromBoard();
+        int after = app.board().getBoardsCount();
+        System.out.println("was: " + before + " now: " + after);
+        Assert.assertEquals(after, before+1);
+    }
+
+
     @Test
     public void boardCreationTest() {
 
@@ -59,7 +72,7 @@ public class BoardCreationTests extends TestBase {
     }
 
     @Test
-    public void boardCreationTest2(){
+    public void boardCreationTest2() {
         int before = app.board().getBoardsCount();
         app.header().clickOnPlusButton();
         app.header().selectCreateBoard();
@@ -73,8 +86,6 @@ public class BoardCreationTests extends TestBase {
         System.out.println("was: " + before + " now: " + after);
         Assert.assertEquals(after, before+1);
 
-       //personal boards count,before,after
     }
-
 
 }

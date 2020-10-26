@@ -9,19 +9,22 @@ public class SessionHelper extends HelperBase {
         super(wd);
     }
 
-    public  boolean isLoginErrorPresent(){
+
+    public boolean isLoginErrorPresent() {
         return isElementPresent(By.cssSelector("#login-error"));
     }
+
     public void login(String email, String pwd) throws InterruptedException {
         click(By.cssSelector("[href='/login']"));
-        //fillLoginForm
+        //fillLoginFom
         //fill email
-        type(By.name("user"),email);
+        type(By.name("user"), email);
         //clickOnLoginWithAtlassianButton
         click(By.id("login"));
         Thread.sleep(10000);
         //fillPassword
-        type(By.id("password"),pwd);
+        type(By.id("password"), pwd);
+        //confirm login
         click(By.id("login-submit"));
     }
 }

@@ -8,24 +8,24 @@ public class TeamHelper extends HelperBase{
         super(wd);
     }
 
-    public void fillTeamCreationForm(String teamName,String type){
+    public void fillTeamCreationForm(String teamName, String type) {
         type(By.cssSelector("[data-test-id='header-create-team-name-input']"), teamName);
-        click(By.cssSelector("[data-test-id='header-create-team-type-input']"));
-        click(By.cssSelector("[data-test-id='header-create-team-type-"+ type +"']"));
 
+        click(By.cssSelector("[data-test-id='header-create-team-type-input']"));
+
+        click(By.cssSelector("[data-test-id='header-create-team-type-input-"+ type +"']"));
     }
-    public void submitTeamCreationForm(){
+
+    public void submitTeamCreationForm() {
         click(By.cssSelector("[data-test-id='header-create-team-submit-button']"));
     }
 
-    public void selectIwillDoWithLaterButton(){
+    public void selectIwillDoThisLaterButton(){
         click(By.cssSelector("[data-test-id='show-later-button']"));
-
     }
 
     public int getTeamCount() {
         return wd.findElements(By.cssSelector("[data-test-id='home-team-tab-name']")).size();
-
     }
 
 
