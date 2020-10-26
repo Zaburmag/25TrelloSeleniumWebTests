@@ -1,17 +1,16 @@
 package com.telRan.tests.fw;
 
 
-import com.telRan.tests.model.Board;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.BrowserType;
-import java.io.FileReader;
-import java.io.File;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
-
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {

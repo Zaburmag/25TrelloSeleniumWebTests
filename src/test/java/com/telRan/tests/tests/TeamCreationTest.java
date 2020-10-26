@@ -6,8 +6,7 @@ import org.testng.annotations.Test;
 
 import java.util.Objects;
 
-import static com.telRan.tests.tests.TestBase.app;
-import static com.telRan.tests.tests.TestBase.app;
+
 
 public class TeamCreationTest extends TestBase{
     @Test
