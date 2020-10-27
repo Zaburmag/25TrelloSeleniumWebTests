@@ -16,7 +16,7 @@ public class LoginTrelloTests extends  TestBase{
     @Test
     public void loginAtlassianAccPositiveTest() throws InterruptedException {
         //clickOnLoginButtonOnWelcomePage
-        app.session().login("yuliazaburmag@gmail.com", "naomi_1007");
+        app.session().login("yuliazaburmag@gmail.com", "mamasita1");
         //er userLoggedIn (isAvatar present)
         Assert.assertTrue(app.header().isAvatarPresent());
         //is user correct
@@ -25,7 +25,7 @@ public class LoginTrelloTests extends  TestBase{
 
     @Test
     public void negativeLoginAtlassianAccPositiveTest() throws InterruptedException {
-        app.session().login("yuliazaburmag@gmail.com", "naomi_1007");
+        app.session().login("yuliazaburmag@gmail.com", "mamasita1");
         Assert.assertTrue(app.session().isLoginErrorPresent());
         Assert.assertFalse(app.header().isAvatarPresent());
 
