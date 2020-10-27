@@ -1,13 +1,11 @@
 package com.telRan.tests.fw;
 
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.BrowserType;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
@@ -33,7 +31,7 @@ public class ApplicationManager {
 
     public void init() throws IOException, InterruptedException {
         String target = System.getProperty("target", "trelloWeb");
-        properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+        properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties",target))));
         if (browser.equals(BrowserType.CHROME)){
             wd = new ChromeDriver();
         } else if(browser.equals(BrowserType.FIREFOX)){
